@@ -1,47 +1,55 @@
-
 <!DOCTYPE html>
-<!-- PyleaPocket – complete offline reference for PyleaMUN delegates -->
+<!-- PyleaPocket – PyleaMUN offline reference -->
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>PyleaPocket – PyleaMUN Reference</title>
+
+  <!-- 🔹 minimal CSS kept inline -->
   <style>
-    :root{
-      --teal:#006d7c;
-      --bg:#f7f9fa;
-      --card:#ffffff;
-      --border:#e2e8f0;
-      --text:#111827;
-      --shadow:0 2px 4px rgba(0,0,0,.06);
-      --radius:.75rem;
-    }
-    *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
+    :root{--teal:#006d7c;--bg:#f7f9fa;--card:#fff;--border:#e2e8f0;--text:#111827;
+          --shadow:0 2px 4px rgba(0,0,0,.06);--radius:.75rem;}
+    *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,
+       Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
     body{background:var(--bg);color:var(--text);line-height:1.5;}
-    header{background:var(--card);padding:1rem .5rem 1rem;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;gap:1rem;}
+    header{background:var(--card);padding:1rem .5rem 1rem;box-shadow:var(--shadow);
+           display:flex;flex-direction:column;align-items:center;gap:1rem;}
     .branding{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;justify-content:center;}
     .branding img{width:110px;height:auto;border-radius:var(--radius);}
-    .branding .pocket{font-size:1.5rem;font-weight:700;color:var(--teal);white-space:nowrap;}
-    nav{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;width:100%;max-width:900px;}
-    nav button{flex:1 1 120px;padding:.5rem;border:none;border-radius:var(--radius);background:var(--teal);color:#fff;font-weight:600;cursor:pointer;box-shadow:var(--shadow);}
+    .branding .pocket{font-size:1.5rem;font-weight:700;color:var(--teal);}
+    nav{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;max-width:900px;width:100%;}
+    nav button{flex:1 1 120px;padding:.5rem;border:none;border-radius:var(--radius);
+               background:var(--teal);color:#fff;font-weight:600;cursor:pointer;
+               box-shadow:var(--shadow);}
     nav button.active{outline:3px solid var(--teal);background:#014a58;}
-    .ext-links{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;width:100%;max-width:900px;}
-    .ext-btn{flex:1 1 200px;padding:.5rem 1rem;text-align:center;text-decoration:none;border-radius:var(--radius);background:#0a9396;color:#fff;font-weight:600;box-shadow:var(--shadow);}
+    .ext-links{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;
+               max-width:900px;width:100%;}
+    .ext-btn{flex:1 1 200px;padding:.5rem 1rem;text-align:center;text-decoration:none;
+             border-radius:var(--radius);background:#0a9396;color:#fff;font-weight:600;
+             box-shadow:var(--shadow);}
     .ext-btn:hover{background:#08767b;}
     main{max-width:900px;margin:0 auto;padding:1rem;}
     section{display:none;animation:fade .2s ease-in-out;}
     section.active{display:block;}
     @keyframes fade{from{opacity:0;}to{opacity:1;}}
     h2{font-size:1.25rem;color:var(--teal);margin-bottom:.5rem;}
-    .details{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem;margin:.5rem 0;box-shadow:var(--shadow);}
-    .clause-list button{display:block;width:100%;text-align:left;padding:.25rem 0;background:none;border:none;color:var(--teal);cursor:pointer;}
+    .details{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+             padding:.75rem;margin:.5rem 0;box-shadow:var(--shadow);}
+    .clause-list button{display:block;width:100%;text-align:left;padding:.25rem 0;
+                        background:none;border:none;color:var(--teal);cursor:pointer;}
     .clause-list button:hover{background:rgba(0,109,124,.1);}
-    .document{white-space:pre-wrap;max-height:70vh;overflow-y:auto;border:1px solid var(--border);border-radius:var(--radius);padding:1rem;background:var(--card);}
-    input[type="search"],select{width:100%;padding:.5rem;margin:.5rem 0;border:1px solid var(--border);border-radius:var(--radius);}
-    .country-card{border:1px solid var(--border);border-radius:var(--radius);padding:.75rem;margin:.25rem 0;background:var(--card);box-shadow:var(--shadow);}
+    .document{white-space:pre-wrap;max-height:70vh;overflow-y:auto;border:1px solid var(--border);
+              border-radius:var(--radius);padding:1rem;background:var(--card);}
+    input[type="search"],select{width:100%;padding:.5rem;margin:.5rem 0;
+                               border:1px solid var(--border);border-radius:var(--radius);}
+    .country-card{border:1px solid var(--border);border-radius:var(--radius);padding:.75rem;
+                  margin:.25rem 0;background:var(--card);box-shadow:var(--shadow);}
     .country-card h3{color:var(--teal);}
-    .news-item{margin:.5rem 0;} .news-item a{color:var(--teal);font-weight:600;text-decoration:none;}
-    .map-wrapper img,.unsys-wrapper img{width:100%;height:auto;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);}
+    .news-item{margin:.5rem 0;}
+    .news-item a{color:var(--teal);font-weight:600;text-decoration:none;}
+    .map-wrapper img,.unsys-wrapper img{width:100%;height:auto;border:1px solid var(--border);
+                                        border-radius:var(--radius);box-shadow:var(--shadow);}
     footer{font-size:.8rem;color:#6b7280;text-align:center;padding:1rem;}
   </style>
 </head>
@@ -49,9 +57,11 @@
 <header>
   <div class="branding">
     <span class="pocket">PyleaPocket</span>
-    <img src="pyleaMUNfinallogo.png" alt="PyleaMUN logo">
+    <img src="pyleaMUNfinallogo.png" alt="PyleaMUN logo" />
     <span class="pocket">PyleaPocket</span>
   </div>
+
+  <!-- navigation -->
   <nav id="nav">
     <button data-target="clauses" class="active">Clauses</button>
     <button data-target="charter">UN Charter</button>
@@ -62,12 +72,18 @@
     <button data-target="news">UN&nbsp;News</button>
     <button data-target="ngos">NGOs</button>
   </nav>
+
+  <!-- external links -->
   <div class="ext-links">
-    <a class="ext-btn" href="https://panagiotis-domvros.github.io/position-paper/" target="_blank" rel="noopener noreferrer">Position Paper Builder</a>
-    <a class="ext-btn" href="https://panagiotis-domvros.github.io/draft-resolution/" target="_blank" rel="noopener noreferrer">Draft Resolution Builder</a>
+    <a class="ext-btn" href="https://panagiotis-domvros.github.io/position-paper/"
+       target="_blank" rel="noopener">Position Paper Builder</a>
+    <a class="ext-btn" href="https://panagiotis-domvros.github.io/draft-resolution/"
+       target="_blank" rel="noopener">Draft Resolution Builder</a>
   </div>
 </header>
+
 <main>
+  <!-- tabs -->
   <section id="clauses" class="active">
     <h2>Resolution Clause Bank</h2>
     <div class="details">
@@ -78,54 +94,74 @@
       <h3>Operative Clauses</h3>
       <div class="clause-list" id="opList"></div>
     </div>
-    <p style="font-size:.9rem;margin-top:.5rem;">Tap a clause to copy it to your clipboard.</p>
+    <p style="font-size:.9rem;margin-top:.5rem;">
+      Tap a clause to copy it to your clipboard.
+    </p>
   </section>
 
   <section id="charter">
     <h2>Charter of the United Nations</h2>
-    <input type="search" id="charterSearch" placeholder="Search the Charter…">
-    <div class="document" id="charterDoc">Loading… (requires first-time internet)</div>
+    <input type="search" id="charterSearch" placeholder="Search the Charter…" />
+    <div class="document" id="charterDoc">
+      Loading… (first load needs internet)
+    </div>
   </section>
 
   <section id="udhr">
     <h2>Universal Declaration of Human Rights</h2>
-    <input type="search" id="udhrSearch" placeholder="Search the UDHR…">
-    <div class="document" id="udhrDoc">Loading… (requires first-time internet)</div>
+    <input type="search" id="udhrSearch" placeholder="Search the UDHR…" />
+    <div class="document" id="udhrDoc">
+      Loading… (first load needs internet)
+    </div>
   </section>
 
   <section id="factbook">
     <h2>Country Factbook</h2>
-    <input type="search" id="factSearch" placeholder="Search country name…">
+    <input type="search" id="factSearch" placeholder="Search country name…" />
     <div id="factResults"></div>
   </section>
 
   <section id="map">
     <h2>Political World Map</h2>
-    <div class="map-wrapper"><img id="worldMap" alt="World map" src="data:image/png;base64,{{WORLD_MAP_B64}}"></div>
-    <p style="font-size:.8rem;">Pinch-zoom on mobile. Map data: Natural Earth 2024.</p>
+    <div class="map-wrapper">
+      <img id="worldMap" src="data:image/png;base64,{{WORLD_MAP_B64}}"
+           alt="World map" />
+    </div>
+    <p style="font-size:.8rem;">Pinch-zoom on mobile.</p>
   </section>
 
   <section id="unsystem">
     <h2>UN System Chart</h2>
-    <div class="unsys-wrapper"><img id="unChart" alt="UN system chart" src="data:image/png;base64,{{UN_CHART_B64}}"></div>
+    <div class="unsys-wrapper">
+      <img id="unChart" src="data:image/png;base64,{{UN_CHART_B64}}"
+           alt="UN system chart" />
+    </div>
   </section>
 
   <section id="news">
     <h2>Latest UN News</h2>
-    <button id="refreshNews" style="margin-bottom:.5rem;padding:.25rem .75rem;border-radius:var(--radius);border:1px solid var(--border);background:var(--card);color:var(--teal);">Refresh</button>
+    <button id="refreshNews"
+            style="margin-bottom:.5rem;padding:.25rem .75rem;border-radius:var(--radius);
+                   border:1px solid var(--border);background:var(--card);color:var(--teal);">
+      Refresh
+    </button>
     <div id="newsFeed">Loading…</div>
   </section>
 
   <section id="ngos">
     <h2>NGO Directory</h2>
-    <input type="search" id="ngoSearch" placeholder="Search NGOs…">
+    <input type="search" id="ngoSearch" placeholder="Search NGOs…" />
     <select id="ngoRegion"><option value="">All Regions</option></select>
     <div id="ngoResults"></div>
   </section>
 </main>
-<footer>PyleaPocket &copy; 2025 – works offline after first load. Data sources: United Nations, Natural Earth, REST Countries, Idealist.org.</footer>
-<script>
-/* trimmed for brevity in this visible excerpt – full JS identical to canvas */
-</script>
+
+<footer>
+  PyleaPocket © 2025 – works fully offline after first load.<br />
+  Data: United Nations, Natural Earth, REST Countries, Idealist.
+</footer>
+
+<!-- 🔹 external JS so GitHub Pages can execute it -->
+<script defer src="pyleaPocket.js"></script>
 </body>
 </html>
