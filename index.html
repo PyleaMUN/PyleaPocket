@@ -1,32 +1,45 @@
+
 <!DOCTYPE html>
-<!-- PyleaPocket – Clauses, Factbook + external builders (fully complete) -->
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>PyleaPocket</title>
 <style>
 :root{--teal:#006d7c;--bg:#f7f9fa;--card:#ffffff;--border:#e2e8f0;--text:#111827;--shadow:0 2px 4px rgba(0,0,0,.06);--radius:.75rem;}
 *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
-body{background:var(--bg);color:var(--text);line-height:1.5;}
-header{background:var(--card);padding:1rem .5rem 1rem;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;gap:1rem;}
+body{background:var(--bg);color:var(--text);line-height:1.45;}
+header{background:var(--card);padding:1rem .75rem;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;gap:.75rem;}
 .branding{display:flex;align-items:center;gap:.5rem;}
-.branding img{width:110px;height:auto;border-radius:var(--radius);} .pocket{font-size:1.5rem;font-weight:700;color:var(--teal);} .credit{font-size:.9rem;color:var(--teal);font-weight:600;}
-nav{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;max-width:800px;width:100%;}
-nav button,nav a.nav-link{flex:1 1 200px;padding:.5rem;border:none;border-radius:var(--radius);background:var(--teal);color:#fff;font-weight:600;text-align:center;text-decoration:none;cursor:pointer;box-shadow:var(--shadow);} nav button.active{outline:3px solid var(--teal);background:#014a58;}
-.ext-links{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;max-width:800px;width:100%;margin-top:.5rem;}
-.ext-btn{flex:1 1 260px;padding:.5rem 1rem;text-align:center;text-decoration:none;border-radius:.5rem;background:#0a9396;color:#fff;font-weight:600;box-shadow:var(--shadow);} .ext-btn:hover{background:#08767b;}
-main{max-width:900px;margin:0 auto;padding:1rem;}
-section{display:none;animation:fade .2s ease-in-out;} section.active{display:block;}@keyframes fade{from{opacity:0;}to{opacity:1;}}
-.details{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem;margin:.5rem 0;box-shadow:var(--shadow);} .clause-list button{display:block;width:100%;text-align:left;padding:.25rem 0;background:none;border:none;color:var(--teal);cursor:pointer;} .clause-list button:hover{background:rgba(0,109,124,.1);}
-input[type="search"]{width:100%;padding:.5rem;border:1px solid var(--border);border-radius:.5rem;margin:.5rem 0;}
-.country-card{border:1px solid var(--border);border-radius:var(--radius);padding:.75rem;margin:.25rem 0;background:var(--card);box-shadow:var(--shadow);} .country-card h3{color:var(--teal);} 
-footer{font-size:.8rem;color:#6b7280;text-align:center;padding:1rem;}
+.branding img{width:90px;height:auto;border-radius:var(--radius);} 
+.pocket{font-size:1.35rem;font-weight:700;color:var(--teal);} 
+.credit{font-size:.85rem;color:var(--teal);font-weight:600;}
+nav{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;width:100%;}
+nav button,nav a.nav-link{flex:1 1 140px;padding:.5rem .25rem;border:none;border-radius:var(--radius);background:var(--teal);color:#fff;font-weight:600;text-align:center;text-decoration:none;cursor:pointer;box-shadow:var(--shadow);}
+nav button.active{outline:2px solid var(--teal);background:#014a58;}
+.ext-links{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;width:100%;margin-top:.6rem;}
+.ext-btn{flex:1 1 170px;padding:.5rem;border-radius:var(--radius);background:#0a9396;color:#fff;font-weight:600;text-align:center;text-decoration:none;box-shadow:var(--shadow);}
+main{max-width:900px;margin:0 auto;padding:1rem .75rem;}
+section{display:none;animation:fade .2s ease-in-out;}
+section.active{display:block;}
+@keyframes fade{from{opacity:0;}to{opacity:1;}}
+.details{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:.65rem;margin:.5rem 0;box-shadow:var(--shadow);}
+.clause-list button{display:block;width:100%;text-align:left;padding:.25rem 0;background:none;border:none;color:var(--teal);cursor:pointer;font-size:.95rem;}
+input[type='search']{width:100%;padding:.45rem;border:1px solid var(--border);border-radius:.5rem;margin:.45rem 0;font-size:.95rem;}
+.country-card{border:1px solid var(--border);border-radius:var(--radius);padding:.65rem;margin:.25rem 0;background:var(--card);box-shadow:var(--shadow);}
+.country-card h3{color:var(--teal);font-size:1.05rem;margin:.2rem 0;}
+.country-card p{margin:.1rem 0;font-size:.9rem;}
+footer{font-size:.75rem;color:#6b7280;text-align:center;padding:.75rem;}
+@media(max-width:420px){
+  .branding img{width:70px;}
+  nav button,nav a.nav-link,.ext-btn{flex:1 1 100%;}
+  .pocket{font-size:1.2rem;}
+}
 </style>
 </head>
 <body>
 <header>
-  <div class="branding"><span class="pocket">PyleaPocket</span><img src="pyleaMUNfinallogo.png" alt="PyleaMUN logo"/><span class="credit">Created by Panagiotis Domvros</span></div>
+  <div class="branding"><span class="pocket">PyleaPocket</span><img src="pyleaMUNfinallogo.png" alt="PyleaMUN logo"><span class="credit">Created by Panagiotis Domvros</span></div>
   <nav id="nav">
     <button data-target="clauses" class="active">Clauses</button>
     <button data-target="factbook">Factbook</button>
@@ -39,25 +52,57 @@ footer{font-size:.8rem;color:#6b7280;text-align:center;padding:1rem;}
 </header>
 <main>
   <section id="clauses" class="active">
-    <div class="details"><h2>Preambulatory Clauses</h2><div id="preList" class="clause-list"></div></div>
-    <div class="details"><h2>Operative Clauses</h2><div id="opList" class="clause-list"></div></div>
-    <p style="font-size:.9rem;margin-top:.5rem;">Tap a clause to copy (comma appended).</p>
+    <div class="details"><h2 style="color:var(--teal);font-size:1.05rem;">Preambulatory Clauses</h2><div id="preList" class="clause-list"></div></div>
+    <div class="details"><h2 style="color:var(--teal);font-size:1.05rem;">Operative Clauses</h2><div id="opList" class="clause-list"></div></div>
+    <p style="font-size:.85rem;margin-top:.4rem;">Tap a clause to copy (comma appended).</p>
   </section>
   <section id="factbook">
-    <h2>Country Factbook</h2>
-    <input id="factSearch" type="search" placeholder="Search countries…" />
+    <h2 style="color:var(--teal);font-size:1.1rem;">Country Factbook</h2>
+    <input id="factSearch" type="search" placeholder="Search countries…">
     <div id="factResults"></div>
   </section>
 </main>
-<footer>PyleaPocket © 2025 (works offline after first load) –Panagiotis Domvros, English and Drama Teacher & Teacher Trainer.</footer>
-
+<footer>PyleaPocket © 2025 (works offline after first load) – Panagiotis Domvros, English and Drama Teacher & Teacher Trainer.</footer>
 <script>
-/* NAV */
-const nav=document.getElementById('nav');nav.addEventListener('click',e=>{if(e.target.tagName!=='BUTTON')return;[...nav.children].forEach(el=>el.classList.toggle('active',el===e.target));document.querySelectorAll('main section').forEach(s=>s.classList.toggle('active',s.id===e.target.dataset.target));});
-/* CLAUSE BANK */
-const PRE=["Affirming","Alarmed by","Approving","Aware of","Bearing in mind","Believing","Confident","Contemplating","Convinced","Declaring","Deeply concerned","Deeply conscious","Deeply disturbed","Deeply regretting","Desiring","Emphasizing","Expecting","Expressing its appreciation","Fulfilling","Fully aware","Fully believing","Further recalling","Gravely concerned","Having adopted","Having considered","Having examined","Having heard","Having received","Having studied","Keeping in mind","Mindful","Noting with approval","Noting with deep concern","Noting further","Noting with regret","Noting with satisfaction","Observing","Pointing out","Reaffirming","Recalling","Recognizing","Referring","Seeking","Taking into account","Taking note","Viewing with appreciation","Welcoming"],OP=["Accepts","Affirms","Approves","Authorizes","Calls","Calls upon","Condemns","Confirms","Congratulates","Considers","Declares accordingly","Deplores","Designates","Draws attention","Emphasizes","Encourages","Endorses","Expresses its appreciation","Expresses its hope","Further invites","Further proclaims","Further recommends","Further reminds","Further requests","Further resolves","Has resolved","Notes","Proclaims","Reaffirms","Recommends","Regrets","Reminds","Requests","Solemnly affirms","Strongly condemns","Supports","Takes note of","Transmits","Trusts"];function add(arr,id){const box=document.getElementById(id);arr.forEach(t=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>navigator.clipboard.writeText(t+', ');box.appendChild(b);});}add(PRE,'preList');add(OP,'opList');
-/* FACTBOOK */
-(async()=>{const box=document.getElementById('factResults'),search=document.getElementById('factSearch');let data=[];try{const res=await fetch('https://restcountries.com/v3.1/all?fields=name,cca2,region,capital,population');data=(await res.json()).map(c=>({k:c.name.common.toLowerCase(),n:c.name.common,cc:c.cca2||'',r:c.region,cap:(c.capital||['—'])[0],pop:c.population||0}));}catch{box.textContent='API unavailable';return;}const flag=cc=>cc?String.fromCodePoint(...[...cc].map(ch=>127397+ch.charCodeAt())):'';const render=q=>{box.innerHTML='';const ql=q.toLowerCase();data.filter(c=>c.k.includes(ql)).sort((a,b)=>a.n.localeCompare(b.n)).forEach(c=>{box.innerHTML+=`<div class="country-card"><h3>${flag(c.cc)} ${c.n}</h3><p><strong>Capital:</strong> ${c.cap}</p><p><strong>Region:</strong> ${c.r}</p><p><strong>Population:</strong> ${c.pop.toLocaleString()}</p></div>`});};render('');search.oninput=e=>render(e.target.value);})();
+/* nav */
+const nav=document.getElementById('nav');
+nav.addEventListener('click',e=>{
+  if(e.target.tagName!=='BUTTON')return;
+  [...nav.children].forEach(el=>el.classList.toggle('active',el===e.target));
+  document.querySelectorAll('main section').forEach(s=>s.classList.toggle('active',s.id===e.target.dataset.target));
+});
+/* clauses */
+const PRE=["Affirming","Alarmed by","Approving","Aware of","Bearing in mind","Believing","Confident","Contemplating","Convinced","Declaring","Deeply concerned","Deeply conscious","Deeply disturbed","Deeply regretting","Desiring","Emphasizing","Expecting","Expressing its appreciation","Fulfilling","Fully aware","Fully believing","Further recalling","Gravely concerned","Having adopted","Having considered","Having examined","Having heard","Having received","Having studied","Keeping in mind","Mindful","Noting with approval","Noting with deep concern","Noting further","Noting with regret","Noting with satisfaction","Observing","Pointing out","Reaffirming","Recalling","Recognizing","Referring","Seeking","Taking into account","Taking note","Viewing with appreciation","Welcoming"];
+const OP=["Accepts","Affirms","Approves","Authorizes","Calls","Calls upon","Condemns","Confirms","Congratulates","Considers","Declares accordingly","Deplores","Designates","Draws attention","Emphasizes","Encourages","Endorses","Expresses its appreciation","Expresses its hope","Further invites","Further proclaims","Further recommends","Further reminds","Further requests","Further resolves","Has resolved","Notes","Proclaims","Reaffirms","Recommends","Regrets","Reminds","Requests","Solemnly affirms","Strongly condemns","Supports","Takes note of","Transmits","Trusts"];
+function fill(list,id){
+  const box=document.getElementById(id);
+  list.forEach(t=>{
+    const b=document.createElement('button');
+    b.textContent=t;
+    b.onclick=()=>navigator.clipboard.writeText(t+', ');
+    box.appendChild(b);
+  });
+}
+fill(PRE,'preList');fill(OP,'opList');
+/* factbook */
+(async()=>{
+  const box=document.getElementById('factResults'),search=document.getElementById('factSearch');
+  let data=[];
+  try{
+    const res=await fetch('https://restcountries.com/v3.1/all?fields=name,cca2,region,capital,population');
+    data=(await res.json()).map(c=>({k:c.name.common.toLowerCase(),n:c.name.common,cc:c.cca2||'',r:c.region,cap:(c.capital||['—'])[0],pop:c.population}));
+  }catch{box.textContent='API unavailable';return;}
+  const flag=cc=>cc?String.fromCodePoint(...[...cc].map(ch=>127397+ch.charCodeAt())):'';
+  const render=q=>{
+    box.innerHTML='';
+    const ql=q.toLowerCase();
+    data.filter(c=>c.k.includes(ql)).sort((a,b)=>a.n.localeCompare(b.n)).forEach(c=>{
+      box.innerHTML+=`<div class="country-card"><h3>${flag(c.cc)} ${c.n}</h3><p><strong>Capital:</strong> ${c.cap}</p><p><strong>Region:</strong> ${c.r}</p><p><strong>Population:</strong> ${c.pop.toLocaleString()}</p></div>`;
+    });
+  };
+  render('');
+  search.oninput=e=>render(e.target.value);
+})();
 </script>
 </body>
 </html>
