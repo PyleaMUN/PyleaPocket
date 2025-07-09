@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- PyleaPocket – Clauses & Factbook (self‑contained, GitHub‑Pages‑friendly) -->
+<!-- PyleaPocket – Clauses & Factbook (GitHub Pages compliant) -->
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -58,26 +58,37 @@ footer{font-size:.8rem;color:#6b7280;text-align:center;padding:1rem;}
 <footer>PyleaPocket © 2025 – works offline after first load.</footer>
 
 <script>
-/***** Navigation *****/
-const nav=document.getElementById('nav'); nav.onclick=e=>{if(e.target.tagName!=='BUTTON')return;const tgt=e.target.dataset.target;[...nav.children].forEach(b=>b.classList.toggle('active',b===e.target));document.querySelectorAll('main section').forEach(s=>s.classList.toggle('active',s.id===tgt));};
+/***** SPA Navigation *****/
+const nav=document.getElementById('nav');
+nav.onclick=e=>{if(e.target.tagName!=='BUTTON')return;const target=e.target.dataset.target;[...nav.children].forEach(b=>b.classList.toggle('active',b===e.target));document.querySelectorAll('main section').forEach(sec=>sec.classList.toggle('active',sec.id===target));};
 
-/***** Clauses *****/
-const pre=["Affirming","Alarmed by","Approving","Aware of","Bearing in mind","Believing","Confident","Contemplating","Convinced","Declaring","Deeply concerned","Deeply conscious","Deeply disturbed","Deeply regretting","Desiring","Emphasizing","Expecting","Expressing its appreciation","Fulfilling","Fully aware","Fully believing","Further recalling","Gravely concerned","Having adopted","Having considered","Having examined","Having heard","Having received","Having studied","Keeping in mind","Mindful","Noting with approval","Noting with deep concern","Noting further","Noting with regret","Noting with satisfaction","Observing","Pointing out","Reaffirming","Recalling","Recognizing","Referring","Seeking","Taking into account","Taking note","Viewing with appreciation","Welcoming"]; const op=["Accepts","Affirms","Approves","Authorizes","Calls","Calls upon","Condemns","Confirms","Congratulates","Considers","Declares accordingly","Deplores","Designates","Draws attention","Emphasizes","Encourages","Endorses","Expresses its appreciation","Expresses its hope","Further invites","Further proclaims","Further recommends","Further reminds","Further requests","Further resolves","Has resolved","Notes","Proclaims","Reaffirms","Recommends","Regrets","Reminds","Requests","Solemnly affirms","Strongly condemns","Supports","Takes note of","Transmits","Trusts"]; const mk=(arr,id)=>arr.forEach(t=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>navigator.clipboard.writeText(t+', ');document.getElementById(id).appendChild(b);}); mk(pre,'preList'); mk(op,'opList');
+/***** Clause buttons *****/
+const pre=["Affirming","Alarmed by","Approving","Aware of","Bearing in mind","Believing","Confident","Contemplating","Convinced","Declaring","Deeply concerned","Deeply conscious","Deeply disturbed","Deeply regretting","Desiring","Emphasizing","Expecting","Expressing its appreciation","Fulfilling","Fully aware","Fully believing","Further recalling","Gravely concerned","Having adopted","Having considered","Having examined","Having heard","Having received","Having studied","Keeping in mind","Mindful","Noting with approval","Noting with deep concern","Noting further","Noting with regret","Noting with satisfaction","Observing","Pointing out","Reaffirming","Recalling","Recognizing","Referring","Seeking","Taking into account","Taking note","Viewing with appreciation","Welcoming"]; const op=["Accepts","Affirms","Approves","Authorizes","Calls","Calls upon","Condemns","Confirms","Congratulates","Considers","Declares accordingly","Deplores","Designates","Draws attention","Emphasizes","Encourages","Endorses","Expresses its appreciation","Expresses its hope","Further invites","Further proclaims","Further recommends","Further reminds","Further requests","Further resolves","Has resolved","Notes","Proclaims","Reaffirms","Recommends","Regrets","Reminds","Requests","Solemnly affirms","Strongly condemns","Supports","Takes note of","Transmits","Trusts"]; const makeList=(arr,id)=>arr.forEach(t=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>navigator.clipboard.writeText(t+', ');document.getElementById(id).appendChild(b);}); makeList(pre,'preList'); makeList(op,'opList');
 
-/***** Factbook *****/
-const FLAG=e=>String.fromCodePoint(...[...e.toUpperCase()].map(c=>127397+c.charCodeAt())); // alpha‑2 → emoji
+/***** Factbook *****
+ * Uses restcountries API (CORS-enabled).
+ * Caches JSON in localStorage so it works offline.
+ */
+const flag=code=>code?String.fromCodePoint(...[...code.toUpperCase()].map(ch=>127397+ch.charCodeAt())):'';
 (async()=>{
-  const box=document.getElementById('factResults'); const search=document.getElementById('factSearch'); let data=[];
-  const render=q=>{box.innerHTML='';const ql=q.toLowerCase();data.filter(c=>c.name.includes(ql)).forEach(c=>{const d=document.createElement('div');d.className='country-card';d.innerHTML=`<h3>${FLAG(c.cca2)} ${c.display}</h3><p><strong>Capital:</strong> ${c.capital}</p><p><strong>Region:</strong> ${c.region}</p><p><strong>Population:</strong> ${c.population.toLocaleString()}</p>`;box.appendChild(d);});};
-  try{
-    data=await fetch('https://raw.githubusercontent.com/mledoze/countries/master/countries.json').then(r=>r.json()).then(arr=>arr.map(c=>({name:c.name.common.toLowerCase(),display:c.name.common,capital:(c.capital||['—'])[0],region:c.region,cca2:c.cca2,population:c.population})));
-    localStorage.setItem('factbook',JSON.stringify(data));
-  }catch(e){const cached=localStorage.getItem('factbook'); if(cached){data=JSON.parse(cached);} else{box.textContent='❗ First load needs internet.'; return;}}
-  render(''); search.oninput=e=>render(e.target.value);
+  const box=document.getElementById('factResults'); const search=document.getElementById('factSearch'); let dataset=[];
+  const cacheKey='factbookData';
+  async function loadOnline(){
+    const url='https://restcountries.com/v3.1/all?fields=name,cca2,capital,region,population';
+    const res=await fetch(url,{mode:'cors'});
+    if(!res.ok)throw new Error('fetch failed');
+    const arr=await res.json();
+    return arr.map(c=>({key:c.name.common.toLowerCase(),name:c.name.common,capital:(c.capital||['—'])[0],region:c.region,cca2:c.cca2||'',pop:c.population||0}));
+  }
+  try{dataset=await loadOnline();localStorage.setItem(cacheKey,JSON.stringify(dataset));}
+  catch(err){const cached=localStorage.getItem(cacheKey);if(cached){dataset=JSON.parse(cached);}else{box.textContent='❗ First load requires an internet connection.';return;}}
+  function render(q=''){
+    box.innerHTML='';const ql=q.toLowerCase();dataset.filter(c=>c.key.includes(ql)).sort((a,b)=>a.name.localeCompare(b.name)).forEach(c=>{const card=document.createElement('div');card.className='country-card';card.innerHTML=`<h3>${flag(c.cca2)} ${c.name}</h3><p><strong>Capital:</strong> ${c.capital}</p><p><strong>Region:</strong> ${c.region}</p><p><strong>Population:</strong> ${c.pop.toLocaleString()}</p>`;box.appendChild(card);});}
+  render(); search.oninput=e=>render(e.target.value);
 })();
 
-/***** Offline shell *****/
-if('serviceWorker' in navigator){navigator.serviceWorker.register(URL.createObjectURL(new Blob([`self.addEventListener('install',e=>e.waitUntil(caches.open('pylea').then(c=>c.addAll(['./']))));self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));`],{type:'text/javascript'})));}
+/***** Basic offline shell *****/
+if('serviceWorker' in navigator){navigator.serviceWorker.register(URL.createObjectURL(new Blob([`self.addEventListener('install',e=>e.waitUntil(caches.open('pyleapocket').then(c=>c.addAll(['./'])))); self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));`],{type:'text/javascript'})));}
 </script>
 </body>
 </html>
