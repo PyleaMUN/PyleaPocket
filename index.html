@@ -1,42 +1,36 @@
 <!DOCTYPE html>
-<!-- PyleaPocket – Clauses & Factbook (GitHub Pages compliant) -->
+<!-- PyleaPocket – Clauses, Factbook + external builders (fully complete) -->
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>PyleaPocket – Clauses & Factbook</title>
+<title>PyleaPocket</title>
 <style>
-:root{--teal:#006d7c;--bg:#f7f9fa;--card:#fff;--border:#e2e8f0;--text:#111827;--shadow:0 2px 4px rgba(0,0,0,.06);--radius:.75rem;}
+:root{--teal:#006d7c;--bg:#f7f9fa;--card:#ffffff;--border:#e2e8f0;--text:#111827;--shadow:0 2px 4px rgba(0,0,0,.06);--radius:.75rem;}
 *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
 body{background:var(--bg);color:var(--text);line-height:1.5;}
 header{background:var(--card);padding:1rem .5rem 1rem;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;gap:1rem;}
-.branding{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;justify-content:center;}
-.branding img{width:110px;height:auto;border-radius:var(--radius);} .branding .pocket{font-size:1.5rem;font-weight:700;color:var(--teal);}
-nav{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;max-width:600px;width:100%;}
-nav button{flex:1 1 140px;padding:.5rem;border:none;border-radius:var(--radius);background:var(--teal);color:#fff;font-weight:600;cursor:pointer;box-shadow:var(--shadow);} nav button.active{outline:3px solid var(--teal);background:#014a58;}
-.ext-links{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;max-width:600px;width:100%;}
-.ext-btn{flex:1 1 260px;padding:.5rem 1rem;text-align:center;text-decoration:none;border-radius:var(--radius);background:#0a9396;color:#fff;font-weight:600;box-shadow:var(--shadow);} .ext-btn:hover{background:#08767b;}
-main{max-width:800px;margin:0 auto;padding:1rem;}
-section{display:none;animation:fade .2s ease-in-out;}
-section.active{display:block;}
-@keyframes fade{from{opacity:0;}to{opacity:1;}}
-.details{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem;margin:.5rem 0;box-shadow:var(--shadow);}
-.clause-list button{display:block;width:100%;text-align:left;padding:.25rem 0;background:none;border:none;color:var(--teal);cursor:pointer;} .clause-list button:hover{background:rgba(0,109,124,.1);}
-input[type="search"],select{width:100%;padding:.5rem;margin:.5rem 0;border:1px solid var(--border);border-radius:var(--radius);} 
+.branding{display:flex;align-items:center;gap:.5rem;}
+.branding img{width:110px;height:auto;border-radius:var(--radius);} .pocket{font-size:1.5rem;font-weight:700;color:var(--teal);} .credit{font-size:.9rem;color:var(--teal);font-weight:600;}
+nav{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;max-width:800px;width:100%;}
+nav button,nav a.nav-link{flex:1 1 200px;padding:.5rem;border:none;border-radius:var(--radius);background:var(--teal);color:#fff;font-weight:600;text-align:center;text-decoration:none;cursor:pointer;box-shadow:var(--shadow);} nav button.active{outline:3px solid var(--teal);background:#014a58;}
+.ext-links{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;max-width:800px;width:100%;margin-top:.5rem;}
+.ext-btn{flex:1 1 260px;padding:.5rem 1rem;text-align:center;text-decoration:none;border-radius:.5rem;background:#0a9396;color:#fff;font-weight:600;box-shadow:var(--shadow);} .ext-btn:hover{background:#08767b;}
+main{max-width:900px;margin:0 auto;padding:1rem;}
+section{display:none;animation:fade .2s ease-in-out;} section.active{display:block;}@keyframes fade{from{opacity:0;}to{opacity:1;}}
+.details{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem;margin:.5rem 0;box-shadow:var(--shadow);} .clause-list button{display:block;width:100%;text-align:left;padding:.25rem 0;background:none;border:none;color:var(--teal);cursor:pointer;} .clause-list button:hover{background:rgba(0,109,124,.1);}
+input[type="search"]{width:100%;padding:.5rem;border:1px solid var(--border);border-radius:.5rem;margin:.5rem 0;}
 .country-card{border:1px solid var(--border);border-radius:var(--radius);padding:.75rem;margin:.25rem 0;background:var(--card);box-shadow:var(--shadow);} .country-card h3{color:var(--teal);} 
 footer{font-size:.8rem;color:#6b7280;text-align:center;padding:1rem;}
 </style>
 </head>
 <body>
 <header>
-  <div class="branding">
-    <span class="pocket">PyleaPocket</span>
-    <img src="pyleaMUNfinallogo.png" alt="PyleaMUN logo" />
-    <span class="pocket">PyleaPocket</span>
-  </div>
+  <div class="branding"><span class="pocket">PyleaPocket</span><img src="pyleaMUNfinallogo.png" alt="PyleaMUN logo"/><span class="credit">Created by Panagiotis Domvros</span></div>
   <nav id="nav">
     <button data-target="clauses" class="active">Clauses</button>
     <button data-target="factbook">Factbook</button>
+    <a href="https://pyleamun.github.io/Country-Checklist-Builder/" target="_blank" rel="noopener" class="nav-link">Country Checklist Builder</a>
   </nav>
   <div class="ext-links">
     <a class="ext-btn" href="https://panagiotis-domvros.github.io/position-paper/" target="_blank" rel="noopener">Position Paper Builder</a>
@@ -51,44 +45,19 @@ footer{font-size:.8rem;color:#6b7280;text-align:center;padding:1rem;}
   </section>
   <section id="factbook">
     <h2>Country Factbook</h2>
-    <input id="factSearch" type="search" placeholder="Search countries…" autocomplete="off" />
+    <input id="factSearch" type="search" placeholder="Search countries…" />
     <div id="factResults"></div>
   </section>
 </main>
-<footer>PyleaPocket © 2025 – works offline after first load.</footer>
+<footer>PyleaPocket © 2025 (works offline after first load) –Panagiotis Domvros, English and Drama Teacher & Teacher Trainer.</footer>
 
 <script>
-/***** SPA Navigation *****/
-const nav=document.getElementById('nav');
-nav.onclick=e=>{if(e.target.tagName!=='BUTTON')return;const target=e.target.dataset.target;[...nav.children].forEach(b=>b.classList.toggle('active',b===e.target));document.querySelectorAll('main section').forEach(sec=>sec.classList.toggle('active',sec.id===target));};
-
-/***** Clause buttons *****/
-const pre=["Affirming","Alarmed by","Approving","Aware of","Bearing in mind","Believing","Confident","Contemplating","Convinced","Declaring","Deeply concerned","Deeply conscious","Deeply disturbed","Deeply regretting","Desiring","Emphasizing","Expecting","Expressing its appreciation","Fulfilling","Fully aware","Fully believing","Further recalling","Gravely concerned","Having adopted","Having considered","Having examined","Having heard","Having received","Having studied","Keeping in mind","Mindful","Noting with approval","Noting with deep concern","Noting further","Noting with regret","Noting with satisfaction","Observing","Pointing out","Reaffirming","Recalling","Recognizing","Referring","Seeking","Taking into account","Taking note","Viewing with appreciation","Welcoming"]; const op=["Accepts","Affirms","Approves","Authorizes","Calls","Calls upon","Condemns","Confirms","Congratulates","Considers","Declares accordingly","Deplores","Designates","Draws attention","Emphasizes","Encourages","Endorses","Expresses its appreciation","Expresses its hope","Further invites","Further proclaims","Further recommends","Further reminds","Further requests","Further resolves","Has resolved","Notes","Proclaims","Reaffirms","Recommends","Regrets","Reminds","Requests","Solemnly affirms","Strongly condemns","Supports","Takes note of","Transmits","Trusts"]; const makeList=(arr,id)=>arr.forEach(t=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>navigator.clipboard.writeText(t+', ');document.getElementById(id).appendChild(b);}); makeList(pre,'preList'); makeList(op,'opList');
-
-/***** Factbook *****
- * Uses restcountries API (CORS-enabled).
- * Caches JSON in localStorage so it works offline.
- */
-const flag=code=>code?String.fromCodePoint(...[...code.toUpperCase()].map(ch=>127397+ch.charCodeAt())):'';
-(async()=>{
-  const box=document.getElementById('factResults'); const search=document.getElementById('factSearch'); let dataset=[];
-  const cacheKey='factbookData';
-  async function loadOnline(){
-    const url='https://restcountries.com/v3.1/all?fields=name,cca2,capital,region,population';
-    const res=await fetch(url,{mode:'cors'});
-    if(!res.ok)throw new Error('fetch failed');
-    const arr=await res.json();
-    return arr.map(c=>({key:c.name.common.toLowerCase(),name:c.name.common,capital:(c.capital||['—'])[0],region:c.region,cca2:c.cca2||'',pop:c.population||0}));
-  }
-  try{dataset=await loadOnline();localStorage.setItem(cacheKey,JSON.stringify(dataset));}
-  catch(err){const cached=localStorage.getItem(cacheKey);if(cached){dataset=JSON.parse(cached);}else{box.textContent='❗ First load requires an internet connection.';return;}}
-  function render(q=''){
-    box.innerHTML='';const ql=q.toLowerCase();dataset.filter(c=>c.key.includes(ql)).sort((a,b)=>a.name.localeCompare(b.name)).forEach(c=>{const card=document.createElement('div');card.className='country-card';card.innerHTML=`<h3>${flag(c.cca2)} ${c.name}</h3><p><strong>Capital:</strong> ${c.capital}</p><p><strong>Region:</strong> ${c.region}</p><p><strong>Population:</strong> ${c.pop.toLocaleString()}</p>`;box.appendChild(card);});}
-  render(); search.oninput=e=>render(e.target.value);
-})();
-
-/***** Basic offline shell *****/
-if('serviceWorker' in navigator){navigator.serviceWorker.register(URL.createObjectURL(new Blob([`self.addEventListener('install',e=>e.waitUntil(caches.open('pyleapocket').then(c=>c.addAll(['./'])))); self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));`],{type:'text/javascript'})));}
+/* NAV */
+const nav=document.getElementById('nav');nav.addEventListener('click',e=>{if(e.target.tagName!=='BUTTON')return;[...nav.children].forEach(el=>el.classList.toggle('active',el===e.target));document.querySelectorAll('main section').forEach(s=>s.classList.toggle('active',s.id===e.target.dataset.target));});
+/* CLAUSE BANK */
+const PRE=["Affirming","Alarmed by","Approving","Aware of","Bearing in mind","Believing","Confident","Contemplating","Convinced","Declaring","Deeply concerned","Deeply conscious","Deeply disturbed","Deeply regretting","Desiring","Emphasizing","Expecting","Expressing its appreciation","Fulfilling","Fully aware","Fully believing","Further recalling","Gravely concerned","Having adopted","Having considered","Having examined","Having heard","Having received","Having studied","Keeping in mind","Mindful","Noting with approval","Noting with deep concern","Noting further","Noting with regret","Noting with satisfaction","Observing","Pointing out","Reaffirming","Recalling","Recognizing","Referring","Seeking","Taking into account","Taking note","Viewing with appreciation","Welcoming"],OP=["Accepts","Affirms","Approves","Authorizes","Calls","Calls upon","Condemns","Confirms","Congratulates","Considers","Declares accordingly","Deplores","Designates","Draws attention","Emphasizes","Encourages","Endorses","Expresses its appreciation","Expresses its hope","Further invites","Further proclaims","Further recommends","Further reminds","Further requests","Further resolves","Has resolved","Notes","Proclaims","Reaffirms","Recommends","Regrets","Reminds","Requests","Solemnly affirms","Strongly condemns","Supports","Takes note of","Transmits","Trusts"];function add(arr,id){const box=document.getElementById(id);arr.forEach(t=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>navigator.clipboard.writeText(t+', ');box.appendChild(b);});}add(PRE,'preList');add(OP,'opList');
+/* FACTBOOK */
+(async()=>{const box=document.getElementById('factResults'),search=document.getElementById('factSearch');let data=[];try{const res=await fetch('https://restcountries.com/v3.1/all?fields=name,cca2,region,capital,population');data=(await res.json()).map(c=>({k:c.name.common.toLowerCase(),n:c.name.common,cc:c.cca2||'',r:c.region,cap:(c.capital||['—'])[0],pop:c.population||0}));}catch{box.textContent='API unavailable';return;}const flag=cc=>cc?String.fromCodePoint(...[...cc].map(ch=>127397+ch.charCodeAt())):'';const render=q=>{box.innerHTML='';const ql=q.toLowerCase();data.filter(c=>c.k.includes(ql)).sort((a,b)=>a.n.localeCompare(b.n)).forEach(c=>{box.innerHTML+=`<div class="country-card"><h3>${flag(c.cc)} ${c.n}</h3><p><strong>Capital:</strong> ${c.cap}</p><p><strong>Region:</strong> ${c.r}</p><p><strong>Population:</strong> ${c.pop.toLocaleString()}</p></div>`});};render('');search.oninput=e=>render(e.target.value);})();
 </script>
 </body>
 </html>
