@@ -1,167 +1,119 @@
 <!DOCTYPE html>
-<!-- PyleaPocket – PyleaMUN offline reference -->
+<!-- PyleaPocket – lightweight Clauses & Factbook tool for PyleaMUN delegates -->
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>PyleaPocket – PyleaMUN Reference</title>
-
-  <!-- 🔹 minimal CSS kept inline -->
-  <style>
-    :root{--teal:#006d7c;--bg:#f7f9fa;--card:#fff;--border:#e2e8f0;--text:#111827;
-          --shadow:0 2px 4px rgba(0,0,0,.06);--radius:.75rem;}
-    *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,
-       Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
-    body{background:var(--bg);color:var(--text);line-height:1.5;}
-    header{background:var(--card);padding:1rem .5rem 1rem;box-shadow:var(--shadow);
-           display:flex;flex-direction:column;align-items:center;gap:1rem;}
-    .branding{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;justify-content:center;}
-    .branding img{width:110px;height:auto;border-radius:var(--radius);}
-    .branding .pocket{font-size:1.5rem;font-weight:700;color:var(--teal);}
-    nav{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;max-width:900px;width:100%;}
-    nav button{flex:1 1 120px;padding:.5rem;border:none;border-radius:var(--radius);
-               background:var(--teal);color:#fff;font-weight:600;cursor:pointer;
-               box-shadow:var(--shadow);}
-    nav button.active{outline:3px solid var(--teal);background:#014a58;}
-    .ext-links{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;
-               max-width:900px;width:100%;}
-    .ext-btn{flex:1 1 200px;padding:.5rem 1rem;text-align:center;text-decoration:none;
-             border-radius:var(--radius);background:#0a9396;color:#fff;font-weight:600;
-             box-shadow:var(--shadow);}
-    .ext-btn:hover{background:#08767b;}
-    main{max-width:900px;margin:0 auto;padding:1rem;}
-    section{display:none;animation:fade .2s ease-in-out;}
-    section.active{display:block;}
-    @keyframes fade{from{opacity:0;}to{opacity:1;}}
-    h2{font-size:1.25rem;color:var(--teal);margin-bottom:.5rem;}
-    .details{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
-             padding:.75rem;margin:.5rem 0;box-shadow:var(--shadow);}
-    .clause-list button{display:block;width:100%;text-align:left;padding:.25rem 0;
-                        background:none;border:none;color:var(--teal);cursor:pointer;}
-    .clause-list button:hover{background:rgba(0,109,124,.1);}
-    .document{white-space:pre-wrap;max-height:70vh;overflow-y:auto;border:1px solid var(--border);
-              border-radius:var(--radius);padding:1rem;background:var(--card);}
-    input[type="search"],select{width:100%;padding:.5rem;margin:.5rem 0;
-                               border:1px solid var(--border);border-radius:var(--radius);}
-    .country-card{border:1px solid var(--border);border-radius:var(--radius);padding:.75rem;
-                  margin:.25rem 0;background:var(--card);box-shadow:var(--shadow);}
-    .country-card h3{color:var(--teal);}
-    .news-item{margin:.5rem 0;}
-    .news-item a{color:var(--teal);font-weight:600;text-decoration:none;}
-    .map-wrapper img,.unsys-wrapper img{width:100%;height:auto;border:1px solid var(--border);
-                                        border-radius:var(--radius);box-shadow:var(--shadow);}
-    footer{font-size:.8rem;color:#6b7280;text-align:center;padding:1rem;}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>PyleaPocket – Clauses & Factbook</title>
+<style>
+:root{
+  --teal:#006d7c;
+  --bg:#f7f9fa;
+  --card:#ffffff;
+  --border:#e2e8f0;
+  --text:#111827;
+  --shadow:0 2px 4px rgba(0,0,0,.06);
+  --radius:.75rem;
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
+body{background:var(--bg);color:var(--text);line-height:1.5;}
+header{background:var(--card);padding:1rem .5rem 1rem;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;gap:1rem;}
+.branding{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;justify-content:center;}
+.branding img{width:110px;height:auto;border-radius:var(--radius);} 
+.branding .pocket{font-size:1.5rem;font-weight:700;color:var(--teal);} 
+nav{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;max-width:600px;width:100%;}
+nav button{flex:1 1 140px;padding:.5rem;border:none;border-radius:var(--radius);background:var(--teal);color:#fff;font-weight:600;cursor:pointer;box-shadow:var(--shadow);} 
+nav button.active{outline:3px solid var(--teal);background:#014a58;}
+.ext-links{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;max-width:600px;width:100%;}
+.ext-btn{flex:1 1 260px;padding:.5rem 1rem;text-align:center;text-decoration:none;border-radius:var(--radius);background:#0a9396;color:#fff;font-weight:600;box-shadow:var(--shadow);} 
+.ext-btn:hover{background:#08767b;}
+main{max-width:800px;margin:0 auto;padding:1rem;}
+section{display:none;animation:fade .2s ease-in-out;}
+section.active{display:block;}
+@keyframes fade{from{opacity:0;}to{opacity:1;}}
+.details{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem;margin:.5rem 0;box-shadow:var(--shadow);} 
+.clause-list button{display:block;width:100%;text-align:left;padding:.25rem 0;background:none;border:none;color:var(--teal);cursor:pointer;}
+.clause-list button:hover{background:rgba(0,109,124,.1);} 
+input[type="search"],select{width:100%;padding:.5rem;margin:.5rem 0;border:1px solid var(--border);border-radius:var(--radius);} 
+.country-card{border:1px solid var(--border);border-radius:var(--radius);padding:.75rem;margin:.25rem 0;background:var(--card);box-shadow:var(--shadow);} 
+.country-card h3{color:var(--teal);} 
+footer{font-size:.8rem;color:#6b7280;text-align:center;padding:1rem;}
+</style>
 </head>
 <body>
 <header>
   <div class="branding">
     <span class="pocket">PyleaPocket</span>
-    <img src="pyleaMUNfinallogo.png" alt="PyleaMUN logo" />
+    <img src="pyleaMUNfinallogo.png" alt="PyleaMUN logo">
     <span class="pocket">PyleaPocket</span>
   </div>
-
-  <!-- navigation -->
   <nav id="nav">
     <button data-target="clauses" class="active">Clauses</button>
-    <button data-target="charter">UN Charter</button>
-    <button data-target="udhr">UDHR</button>
     <button data-target="factbook">Factbook</button>
-    <button data-target="map">World&nbsp;Map</button>
-    <button data-target="unsystem">UN&nbsp;System</button>
-    <button data-target="news">UN&nbsp;News</button>
-    <button data-target="ngos">NGOs</button>
   </nav>
-
-  <!-- external links -->
   <div class="ext-links">
-    <a class="ext-btn" href="https://panagiotis-domvros.github.io/position-paper/"
-       target="_blank" rel="noopener">Position Paper Builder</a>
-    <a class="ext-btn" href="https://panagiotis-domvros.github.io/draft-resolution/"
-       target="_blank" rel="noopener">Draft Resolution Builder</a>
+    <a class="ext-btn" href="https://panagiotis-domvros.github.io/position-paper/" target="_blank" rel="noopener">Position Paper Builder</a>
+    <a class="ext-btn" href="https://panagiotis-domvros.github.io/draft-resolution/" target="_blank" rel="noopener">Draft Resolution Builder</a>
   </div>
 </header>
-
 <main>
-  <!-- tabs -->
+  <!-- Clauses -->
   <section id="clauses" class="active">
-    <h2>Resolution Clause Bank</h2>
     <div class="details">
-      <h3>Preambulatory Clauses</h3>
+      <h2>Preambulatory Clauses</h2>
       <div class="clause-list" id="preList"></div>
     </div>
     <div class="details">
-      <h3>Operative Clauses</h3>
+      <h2>Operative Clauses</h2>
       <div class="clause-list" id="opList"></div>
     </div>
-    <p style="font-size:.9rem;margin-top:.5rem;">
-      Tap a clause to copy it to your clipboard.
-    </p>
+    <p style="font-size:.9rem;margin-top:.5rem;">Tap a clause to copy it. A comma is added automatically for quick drafting.</p>
   </section>
 
-  <section id="charter">
-    <h2>Charter of the United Nations</h2>
-    <input type="search" id="charterSearch" placeholder="Search the Charter…" />
-    <div class="document" id="charterDoc">
-      Loading… (first load needs internet)
-    </div>
-  </section>
-
-  <section id="udhr">
-    <h2>Universal Declaration of Human Rights</h2>
-    <input type="search" id="udhrSearch" placeholder="Search the UDHR…" />
-    <div class="document" id="udhrDoc">
-      Loading… (first load needs internet)
-    </div>
-  </section>
-
+  <!-- Factbook -->
   <section id="factbook">
     <h2>Country Factbook</h2>
-    <input type="search" id="factSearch" placeholder="Search country name…" />
+    <input type="search" id="factSearch" placeholder="Search by country name…" autocomplete="off">
     <div id="factResults"></div>
   </section>
-
-  <section id="map">
-    <h2>Political World Map</h2>
-    <div class="map-wrapper">
-      <img id="worldMap" src="data:image/png;base64,{{WORLD_MAP_B64}}"
-           alt="World map" />
-    </div>
-    <p style="font-size:.8rem;">Pinch-zoom on mobile.</p>
-  </section>
-
-  <section id="unsystem">
-    <h2>UN System Chart</h2>
-    <div class="unsys-wrapper">
-      <img id="unChart" src="data:image/png;base64,{{UN_CHART_B64}}"
-           alt="UN system chart" />
-    </div>
-  </section>
-
-  <section id="news">
-    <h2>Latest UN News</h2>
-    <button id="refreshNews"
-            style="margin-bottom:.5rem;padding:.25rem .75rem;border-radius:var(--radius);
-                   border:1px solid var(--border);background:var(--card);color:var(--teal);">
-      Refresh
-    </button>
-    <div id="newsFeed">Loading…</div>
-  </section>
-
-  <section id="ngos">
-    <h2>NGO Directory</h2>
-    <input type="search" id="ngoSearch" placeholder="Search NGOs…" />
-    <select id="ngoRegion"><option value="">All Regions</option></select>
-    <div id="ngoResults"></div>
-  </section>
 </main>
+<footer>PyleaPocket &copy; 2025 – works fully offline after first load.</footer>
 
-<footer>
-  PyleaPocket © 2025 – works fully offline after first load.<br />
-  Data: United Nations, Natural Earth, REST Countries, Idealist.
-</footer>
+<script>
+/***** Simple navigation *****/
+const nav=document.getElementById('nav');
+nav.addEventListener('click',e=>{
+  if(e.target.tagName!=='BUTTON')return;
+  const tgt=e.target.dataset.target;
+  [...nav.children].forEach(b=>b.classList.toggle('active',b===e.target));
+  document.querySelectorAll('main section').forEach(sec=>sec.classList.toggle('active',sec.id===tgt));
+});
 
-<!-- 🔹 external JS so GitHub Pages can execute it -->
-<script defer src="pyleaPocket.js"></script>
+/***** Clause bank *****/
+const preClauses=["Affirming","Alarmed by","Approving","Aware of","Bearing in mind","Believing","Confident","Contemplating","Convinced","Declaring","Deeply concerned","Deeply conscious","Deeply disturbed","Deeply regretting","Desiring","Emphasizing","Expecting","Expressing its appreciation","Fulfilling","Fully aware","Fully believing","Further recalling","Gravely concerned","Having adopted","Having considered","Having examined","Having heard","Having received","Having studied","Keeping in mind","Mindful","Noting with approval","Noting with deep concern","Noting further","Noting with regret","Noting with satisfaction","Observing","Pointing out","Reaffirming","Recalling","Recognizing","Referring","Seeking","Taking into account","Taking note","Viewing with appreciation","Welcoming"];
+const opClauses=["Accepts","Affirms","Approves","Authorizes","Calls","Calls upon","Condemns","Confirms","Congratulates","Considers","Declares accordingly","Deplores","Designates","Draws attention","Emphasizes","Encourages","Endorses","Expresses its appreciation","Expresses its hope","Further invites","Further proclaims","Further recommends","Further reminds","Further requests","Further resolves","Has resolved","Notes","Proclaims","Reaffirms","Recommends","Regrets","Reminds","Requests","Solemnly affirms","Strongly condemns","Supports","Takes note of","Transmits","Trusts"];
+const makeButtons=(arr,id)=>arr.forEach(t=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>navigator.clipboard.writeText(t+", ");document.getElementById(id).appendChild(b);});
+makeButtons(preClauses,'preList');
+makeButtons(opClauses,'opList');
+
+/***** Factbook *****/
+(async()=>{
+  const search=document.getElementById('factSearch');const box=document.getElementById('factResults');
+  try{
+    const data=await fetch('https://restcountries.com/v3.1/all').then(r=>r.json()).then(arr=>arr.map(c=>({name:c.name.common,pop:c.population,cap:(c.capital||[''])[0],reg:c.region,flag:c.flag})));
+    localStorage.setItem('factbook',JSON.stringify(data));
+    render('');
+    search.addEventListener('input',e=>render(e.target.value));
+    function render(q){box.innerHTML='';data.filter(c=>c.name.toLowerCase().includes(q.toLowerCase())).sort((a,b)=>a.name.localeCompare(b.name)).forEach(c=>{
+      const d=document.createElement('div');d.className='country-card';d.innerHTML=`<h3>${c.flag} ${c.name}</h3><p><strong>Capital:</strong> ${c.cap||'—'}</p><p><strong>Region:</strong> ${c.reg}</p><p><strong>Population:</strong> ${c.pop.toLocaleString()}</p>`;box.appendChild(d);
+    });}
+  }catch(e){const cached=localStorage.getItem('factbook');if(cached){const data=JSON.parse(cached);search.addEventListener('input',e=>render(e.target.value));render('');function render(q){box.innerHTML='';data.filter(c=>c.name.toLowerCase().includes(q.toLowerCase())).forEach(c=>{const d=document.createElement('div');d.className='country-card';d.innerHTML=`<h3>${c.flag} ${c.name}</h3><p><strong>Capital:</strong> ${c.cap||'—'}</p><p><strong>Region:</strong> ${c.reg}</p><p><strong>Population:</strong> ${c.pop.toLocaleString()}</p>`;box.appendChild(d);});}}
+    else{box.textContent='❗ Internet needed on first load.';}
+  }
+})();
+
+/***** Service worker for offline page (optional) *****/
+if('serviceWorker' in navigator){navigator.serviceWorker.register(URL.createObjectURL(new Blob([`self.addEventListener('install',e=>e.waitUntil(caches.open('pylea-v1').then(c=>c.addAll(['./']))));self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));`],{type:'text/javascript'}))).catch(console.warn);} 
+</script>
 </body>
 </html>
